@@ -25,7 +25,7 @@ const HomeCards = () => {
                 List your job to find the perfect developer role
               </p>
               <Link
-                to="/add-job"
+                to="/add-jobs"
                 className="bg-purple-700 inline-block text-white rounded-lg px-4 py-2 hover:bg-purple-900"
               >
                 Add job
