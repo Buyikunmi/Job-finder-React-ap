@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../assets/components/Spinner";
+import { toast } from "react-toastify";
 
 const defaultData = {
   title: "",
@@ -18,7 +19,7 @@ const defaultData = {
   },
 };
 
-const EditJobPage = () => {
+const EditJobPage = ({ editJob }) => {
   const { id } = useParams();
   const [job, setJob] = useState(defaultData);
   const [loading, setLoading] = useState(false);
@@ -33,6 +34,10 @@ const EditJobPage = () => {
   const updateInput = (e) =>
     setJob((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
+  // const submitJob = (updatedData) => {
+  //   // make request
+  // };
+
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -46,7 +51,7 @@ const EditJobPage = () => {
       },
     };
 
-    submitJob(updatedJob);
+    editJob(updatedJob);
     toast.success("Job Edited sucessfully");
     return navigate("/jobs");
   };

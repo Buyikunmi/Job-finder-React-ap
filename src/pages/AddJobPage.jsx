@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../assets/components/Spinner";
 
 const AddJobPage = ({ submitJob }) => {
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Full-Time");
   const [location, setLocation] = useState("");
@@ -38,7 +40,9 @@ const AddJobPage = ({ submitJob }) => {
     toast.success("Job added sucessfully");
     return navigate("/jobs");
   };
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
       <section className="bg-purple-100">
         <div className="container m-auto max-w-2xl py-24">

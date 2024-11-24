@@ -33,6 +33,17 @@ const App = () => {
     });
     return;
   };
+
+  const editJob = async (body) => {
+    const res = await fetch(`/api/jobs/${body.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return;
+  };
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
@@ -43,7 +54,11 @@ const App = () => {
           index
           element={<AddJobPage submitJob={addjob} />}
         />
-        <Route path="/edit-job/:id" index element={<EditJobPage />} />
+        <Route
+          path="/edit-job/:id"
+          index
+          element={<EditJobPage editJob={editJob} />}
+        />
         <Route
           path="/job/:id"
           index
